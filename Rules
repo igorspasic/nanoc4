@@ -4,6 +4,23 @@ require 'compass'
 Compass.add_project_configuration 'config.rb'
 
 
+## CSS
+
+compile '/css/**/*.scss' do
+  filter :sass, Compass.sass_engine_options.merge(
+    :syntax => :scss,
+    :style => :compressed
+  )
+end
+route '/css/**/*.scss' do
+  @item.identifier.without_ext + ".css"
+end
+
+route '/css/**/*.css' do
+  item.identifier.to_s
+end
+
+
 ## defaults
 
 compile '/**/*.md' do
@@ -16,6 +33,7 @@ compile '/**/*.md' do
     :coderay_css => :class
   }
 
+  # read layout from items
   if item[:layout] != nil
     layout item[:layout]
   else

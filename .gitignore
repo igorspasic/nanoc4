@@ -2,3 +2,4 @@ crash.log
 output
 Gemfile.lock
 tmp
+.sass-cache
