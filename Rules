@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+
+require 'compass'
+Compass.add_project_configuration 'config.rb'
+
+
+## defaults
+
+compile '/**/*.md' do
+  filter :erb
+  filter :kramdown, {
+    :smart_quotes => "apos,apos,quot,quot",
+    :coderay_line_numbers => nil,
+    :coderay_tab_width => 4,
+    :coderay_wrap => :div,
+    :coderay_css => :class
+  }
+
+  if item[:layout] != nil
+    layout item[:layout]
+  else
+    layout '/default.html'
+  end
+end
+
+compile '/**/*' do
+end
+
+route '/**/*.{html,md}' do
+  if item.identifier =~ '/index.*'
+    '/index.html'
+  else
+    item.identifier.without_ext + '/index.html'
+  end
+end
+
+route '/**/*' do
+  item.identifier.to_s
+end
+
+## Layout rule
+
+layout '/**/*', :erb
