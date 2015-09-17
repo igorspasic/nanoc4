@@ -1,15 +1,10 @@
-require 'nanoc-external'
+require 'htmlcompressor'
 
 class HtmlCompressorFilter < Nanoc::Filter
   identifier :htmlcompressor
 
   def run(content, params = {})
-    Nanoc::External::Filter.new.run(
-      content,
-      params = {
-        :exec => 'htmlcompressor',
-        :options => %w(-t html)
-      }
-    )
+    compressor = HtmlCompressor::Compressor.new
+    compressor.compress(content)
   end
 end
