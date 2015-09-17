@@ -10,6 +10,8 @@ gem 'nokogiri',		'~> 1.6.6.2'
 gem 'coderay',		'~> 1.1.0'
 gem 'haml',			'~> 4.0.6'
 gem 'json',			'~> 1.8.3'
+gem 'rainpress'
+gem 'jsmin'
 #gem 'typogruby',	'~> 1.0.18'
 
 
