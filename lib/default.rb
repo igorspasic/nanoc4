@@ -21,3 +21,13 @@ def meta_tag(key)
   value = @item[key] || @config[:site][key]
   '<meta name="%s" content="%s">' % [h(key), h(value)] if value
 end
+
+#
+# Usage:
+#
+#  <%= val :title %>
+#
+def val(key)
+  value = @item[key] || @config[:site][key]
+  '%s' % h(value) if value
+end
