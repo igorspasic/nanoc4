@@ -54,6 +54,7 @@ compile '/**/*.md' do
     layout '/default.html'
   end
 
+  filter :md_links
   filter :htmlcompressor
 end
 
