@@ -1,4 +1,7 @@
+require 'erb'
+
 include Nanoc::Helpers::Rendering
+include ERB::Util
 
 # Output a meta-tag for use in your site header. The key you supply is looked
 # up in the configuration under 'meta_data'. You can override it on a per-item
@@ -13,8 +16,8 @@ include Nanoc::Helpers::Rendering
 #   <meta name="keywords" value="...">
 #
 # Here, '...' is either the value of @item[:keywords] or that of
-# @site.config[:keywords].
+# @config[:keywords].
 def meta_tag(key)
-  value = @item[key] || @config[key]
+  value = @item[key] || @config[:site][key]
   '<meta name="%s" content="%s">' % [h(key), h(value)] if value
 end
