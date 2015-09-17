@@ -16,13 +16,22 @@ route '/css/**/*.scss' do
   @item.identifier.without_ext + ".css"
 end
 
-
 compile '/css/**/*.css' do
   filter :minify
 end
 
 route '/css/**/*.css' do
   item.identifier.to_s
+end
+
+
+## htaccess
+
+compile '/htaccess.txt' do
+  filter :erb
+end
+route '/htaccess.txt' do
+  '/.htaccess'
 end
 
 
