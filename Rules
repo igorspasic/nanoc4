@@ -53,6 +53,8 @@ compile '/**/*.md' do
   else
     layout '/default.html'
   end
+
+  filter :htmlcompressor
 end
 
 compile '/**/*' do
