@@ -83,3 +83,4 @@ checks:
 site:
   name: Foo
   base_url: http://foo.rs
+  keywords: 'keyword1, keyword2'
