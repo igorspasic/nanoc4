@@ -4,3 +4,4 @@ Gemfile.lock
 tmp
 .sass-cache
 vendor
+.bundle
