@@ -1,6 +1,8 @@
 require 'erb'
 
 include Nanoc::Helpers::Rendering
+include Nanoc::Helpers::XMLSitemap
+
 include ERB::Util
 
 # Output a meta-tag for use in your site header. The key you supply is looked
