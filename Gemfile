@@ -14,8 +14,6 @@ gem 'rainpress'
 gem 'jsmin'
 gem 'htmlcompressor'
 gem 'nanoc'				# Nanoc 4
-gem 'nanoc-external',	# :external filter
-    :git => 'git://github.com/nanoc/nanoc-external.git',
-    :branch => 'nanoc4'
+gem 'nanoc-external'	# :external filter
 gem 'guard-nanoc'
 #gem 'typogruby',	'~> 1.0.18'
