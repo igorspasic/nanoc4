@@ -2,7 +2,9 @@
 layout: '/index.html'
 ---
 
-# Hello! This is index page
+# Hello!
 
-[One](one.html)<br>
-[One](one.md)<br>
+## This is index page
+
+[One - with .html](one.html)<br>
+[One - with .md](one.md)<br>

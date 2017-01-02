@@ -1,11 +1,6 @@
 require 'erb'
 
-include Nanoc::Helpers::Rendering
-include Nanoc::Helpers::XMLSitemap
-
-include ERB::Util
-
-# Output a meta-tag for use in your site header. The key you supply is looked
+# Output a HTML meta-tag for use in your site header. The key you supply is looked
 # up in the configuration under 'meta_data'. You can override it on a per-item
 # basis.
 #
@@ -18,18 +13,18 @@ include ERB::Util
 #   <meta name="keywords" value="...">
 #
 # Here, '...' is either the value of @item[:keywords] or that of
-# @config[:keywords].
+# @config[:site][:keywords].
+
 def meta_tag(key)
   value = @item[key] || @config[:site][key]
-  '<meta name="%s" content="%s">' % [h(key), h(value)] if value
+  '<meta name="%s" content="%s">' % [h(key.to_s), h(value.to_s)] if value
 end
 
-#
-# Usage:
+# Renders either items key or configuration key.
 #
 #  <%= val :title %>
 #
 def val(key)
   value = @item[key] || @config[:site][key]
-  '%s' % h(value) if value
+  '%s' % h(value.to_s) if value
 end

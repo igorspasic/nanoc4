@@ -1,3 +1,8 @@
+# The syntax to use for patterns in the Rules file. Can be either `"glob"`
+# (default) or `"legacy"`. The former will enable glob patterns, which behave
+# like Ruby’s File.fnmatch. The latter will enable Nanoc 3.x-style patterns.
+string_pattern_type: glob
+
 # A list of file extensions that nanoc will consider to be textual rather than
 # binary. If an item with an extension not in this list is found,  the file
 # will be considered as binary.
@@ -61,9 +66,19 @@ data_sources:
     # it will become “/about.html/” instead.
     allow_periods_in_identifiers: false
 
+    # The kind of identifier to use for items and layouts. The default is
+    # “full”, meaning that identifiers include file extensions. This can also
+    # be “legacy”, primarily used by older Nanoc sites.
+    identifier_type: full
+
     # The encoding to use for input files. If your input files are not in
     # UTF-8 (which they should be!), change this.
     encoding: utf-8
+  -
+    type: filesystem
+    items_root: /static
+    content_dir: 'static'
+    layouts_dir: null
 
 
 # Configuration for the “check” command, which run unit tests on the site.
@@ -80,7 +95,15 @@ checks:
 
 ################################################################################
 
+base_url: "http://localhost:3000"
+
 site:
-  name: Foo
-  base_url: http://foo.rs
+  name: "Foo"
   keywords: 'keyword1, keyword2'
+
+
+# Settings specific to production environment
+
+environments:
+  production:
+    base_url: https://mysite.com

@@ -3,6 +3,30 @@
 require 'compass'
 Compass.add_project_configuration 'config.rb'
 
+preprocess do
+  @items.each do |item|
+    preprocess_item(item)
+  end
+end
+
+
+## just blind-copy these
+
+passthrough '/humans.txt'
+passthrough '/robots.txt'
+passthrough '/BingSiteAuth'
+passthrough '/google*'
+passthrough '/y_key_*'
+
+
+## STATIC content
+
+compile '/static/**/*' do ; end
+route '/static/**/*' do
+  # /static/foo.html → /foo.html
+  item.identifier.to_s.sub(/\A\/static/, '')
+end
+
 
 ## CSS
 
@@ -32,6 +56,16 @@ compile '/htaccess.txt' do
 end
 route '/htaccess.txt' do
   '/.htaccess'
+end
+
+
+# Sitemap
+
+compile '/sitemap.erb' do
+  filter :erb
+end
+route '/sitemap.erb' do
+  '/sitemap.xml'
 end
 
 
