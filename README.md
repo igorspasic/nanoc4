@@ -12,6 +12,18 @@
 + html compressor
 + Collections: ordered set of items of the same kind, prev/next
 + Tags
++ Blog extension
+
+## TODO
+
++ Tag pages (for each tag)
+
+## Frontmatter
+
+### `kind`
+
+Defines name of the collection. If not specified, kind will is equal to first directory name.
+Root items does not have implicit kind. Kind can be specified in `Rules`, too.
 
 ## Development
 

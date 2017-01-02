@@ -107,3 +107,4 @@ site:
 environments:
   production:
     base_url: https://mysite.com
+

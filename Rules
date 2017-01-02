@@ -4,11 +4,18 @@ require 'compass'
 Compass.add_project_configuration 'config.rb'
 
 preprocess do
+
+  # Assume all items inside /blog are blog articles unless otherwise specified
+  @items.select { |item| item.identifier.to_s.start_with?("/blog/") }.each do |item|
+    item[:kind] ||= 'article'
+  end
+
   @items.each do |item|
     preprocess_item(item)
   end
 
   sort_items_collection
+
 end
 
 
@@ -70,8 +77,15 @@ route '/sitemap.erb' do
   '/sitemap.xml'
 end
 
+# ERB
 
-## defaults
+compile '/**/*.erb' do
+  filter :erb
+  layout '/default.*'
+  #filter :html5small if ENV['NANOC_ENV'] == 'production'
+end
+
+## MD
 
 compile '/**/*.md' do
   filter :erb
@@ -95,10 +109,13 @@ compile '/**/*.md' do
   filter :htmlcompressor
 end
 
+
+# defaults
+
 compile '/**/*' do
 end
 
-route '/**/*.{html,md}' do
+route '/**/*.{erb,html,md}' do
   if item.identifier =~ '/index.*'
     '/index.html'
   else
@@ -110,6 +127,6 @@ route '/**/*' do
   item.identifier.to_s
 end
 
-## Layout rule
+# Filter all layouts through erb
 
 layout '/**/*', :erb

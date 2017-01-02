@@ -12,11 +12,19 @@ def preprocess_item(item)
 
 	if item.key?(:date)
 		item[:date] = attribute_to_time(item[:date])
+		item[:created_at] = item[:date]
     else
-		item[:date] = File.birthtime(item[:filename])
+		if item.key?(:created_at)
+			item[:date] = attribute_to_time(item[:created_at])
+		else
+			item[:date] = File.birthtime(item[:filename])
+		end
     end
-    if item.key?(:updated)
-		item[:updated] = attribute_to_time(item[:updated])
+
+    item[:created_at] = item[:date]
+
+    if item.key?(:updated_at)
+		item[:updated_at] = attribute_to_time(item[:updated_at])
     end
 
     # kinds
@@ -25,11 +33,12 @@ def preprocess_item(item)
 
 	if kind == nil
 		path = Pathname(item.identifier).dirname.to_s
-		#path = Pathname(path).dirname.to_s
 		path_array = Pathname(path).each_filename.to_a
 		unless path_array.empty?
 			kind = path_array[0]
-			item[:kind] = kind
+			unless kind.empty?
+				item[:kind] = kind
+			end
 		end
 	end
 
