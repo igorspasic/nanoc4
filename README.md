@@ -10,7 +10,8 @@
 + [kramdown](https://kramdown.gettalong.org/) markdown compiler
 + converter of *.md links to *.html
 + html compressor
-
++ Collections: ordered set of items of the same kind, prev/next
++ Tags
 
 ## Development
 
