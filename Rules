@@ -16,6 +16,17 @@ preprocess do
 
   sort_items_collection
 
+  # build tag pages
+  all_tags(items).each do |tag, count|
+    @items.create(
+      "<%= render '/tag.erb', :tag => '#{tag}' %>",
+      {:title => "Articles tagged ‘#{tag}’", :kind => 'tag-page', :tag => tag, :count => count},
+      "/tags/#{tag}.erb",
+      :binary => false
+    )
+  end
+
+
 end
 
 

@@ -14,16 +14,21 @@
 + Tags
 + Blog extension
 
-## TODO
-
-+ Tag pages (for each tag)
-
 ## Frontmatter
 
 ### `kind`
 
 Defines name of the collection. If not specified, kind will is equal to first directory name.
 Root items does not have implicit kind. Kind can be specified in `Rules`, too.
+
+### `date` and `created_at`
+
+Defines article timestamp. If not specified, files timestamp will be used.
+Both metadata are identical.
+
+### `updated_at`
+
+Optional timestamp of last update.
 
 ## Development
 
