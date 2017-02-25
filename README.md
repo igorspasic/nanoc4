@@ -29,9 +29,13 @@ On output generation, these links will be changed to `*.html`.
 This way your MD files on e.g. github will be linked; but also the generated site
 will be linked as well.
 
+MD files are ruby-preprocessed, too!
+
 ### HTML
 
 Generated HTML files are compressed.
+
+There is ruby function `h()` that prints HTML safe output.
 
 ### Collections
 
@@ -56,10 +60,39 @@ Each tag has it's own tags page under `/tags/` folder.
 ### Blog extension
 
 Default nanoc Blog extension is enabled. Blogs are stored in the `/blogs/`
-folder. Each blog entry is in one subfolder. Root page contains the list of
-all blogs.
+folder. Each blog entry is in one subfolder and it's `kind` will be automatically
+set to `article`. Root page contains the list of all blogs.
 
 Blogs are ordered by date/time, similar to collections.
+
+### Folder metadata
+
+Each folder may contain additional meta-data stored in `*.yaml` files.
+Each metadata is automatically binded into all the items in the same folder.
+You get the parsed metadata as: `@item[yaml_name]`.
+
+This can be used, for example, to define a submenu.
+
+### JSON Database
+
+Just put JSON files anywere. Each JSON file will be loaded in global variable
+`$jsondata` under the key that is equal to json file name (w/o extension), for
+example: `<%= $jsondata['j1'] %>`.
+
+Be sure not to have the same json file name in different folders.
+
+### Sitemap
+
+There is sitemap generator as well.
+
+### htaccess
+
+It is defined in `htaccess.txt`. It generates `.htaccess`.
+
+### Lorem
+
+Lorem library is availiable for creating dummy content.
+
 
 ## Frontmatter
 
